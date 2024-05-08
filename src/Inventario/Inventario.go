@@ -8,16 +8,16 @@ type Produto struct {
 }
 
 type Lote struct {
-	ID                      int
-	Data_fabricacao         string
-	Data_validade           string
-	Quantidade              int
-	Localizacao_armazem     string
-	Condicoes_armazenamento string
-	Status                  string
-	Historico_movimento     []string
-	Informações_fornecedor  string
-	Observacao_nota         string
+	ID                     int
+	DataFabricacao         string
+	DataValidade           string
+	Quantidade             int
+	LocalizacaoArmazem     string
+	CondicoesArmazenamento string
+	Status                 string
+	HistoricoMovimento     []string
+	InformaçõesFornecedor  string
+	ObservacaoNota         string
 }
 
 type Inventario struct {
@@ -43,22 +43,22 @@ func (i *Inventario) AddProduto(id int, nome, descricao, categoria string) {
 
 }
 
-func (inv *Inventario) AddLot(lotID int, produtoID int, datafabricacao string, datavalidade string, quantidade int, localizacaoarmazem string, condicoesarmazenamento string, status string, Informaçõesfornecedor string) {
+func (inv *Inventario) AddLot(lotID int, produtoID int, dataFabricacao string, dataValidade string, quantidade int, localizacaoArmazem string, condicoesarmazenamento string, status string, Informaçõesfornecedor string) {
 	_, exists := inv.Produtos[produtoID]
 	if !exists {
 		panic("Produto não existe")
 	}
 
 	inv.Lotes[lotID] = Lote{
-		ID:                      lotID,
-		Data_fabricacao:         datafabricacao,
-		Data_validade:           datavalidade,
-		Quantidade:              quantidade,
-		Localizacao_armazem:     localizacaoarmazem,
-		Condicoes_armazenamento: condicoesarmazenamento,
-		Status:                  status,
-		Historico_movimento:     []string{},
-		Informações_fornecedor:  "",
-		Observacao_nota:         "",
+		ID:                     lotID,
+		DataFabricacao:         dataFabricacao,
+		DataValidade:           dataValidade,
+		Quantidade:             quantidade,
+		LocalizacaoArmazem:     localizacaoArmazem,
+		CondicoesArmazenamento: condicoesarmazenamento,
+		Status:                 status,
+		HistoricoMovimento:     []string{},
+		InformaçõesFornecedor:  "",
+		ObservacaoNota:         "",
 	}
 }

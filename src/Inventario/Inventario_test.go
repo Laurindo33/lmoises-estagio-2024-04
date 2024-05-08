@@ -8,8 +8,8 @@ func TestInventario(t *testing.T) {
 
 	// Teste para verificar se a função NewInventory() retorna um ponteiro para Inventario não nulo
 	t.Run("NovoInventario retorna um ponteiro não nulo para Inventario", func(t *testing.T) {
-		inv := NovoInventario()
-		if inv == nil {
+		inventario := NovoInventario()
+		if inventario == nil {
 			t.Errorf("NewInventory() returned nil")
 		}
 	})

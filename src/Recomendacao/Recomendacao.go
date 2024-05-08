@@ -6,7 +6,7 @@ import (
 
 type Produto struct {
 	ID            int
-	Data_validade string
+	DataValidade string
 	Quantidade    int
 }
 
@@ -21,14 +21,14 @@ func NewRecomendacao() *Recomendacao {
 func (r *Recomendacao) Addprodutos(produtoID int, datavalidade string, quantidade int) {
 	r.Produtos = append(r.Produtos, Produto{
 		ID:            produtoID,
-		Data_validade: datavalidade,
+		DataValidade: datavalidade,
 		Quantidade:    quantidade,
 	})
 }
 
 func (r *Recomendacao) Recomendar() []int {
 	sort.Slice(r.Produtos, func(i, j int) bool {
-		return r.Produtos[i].Data_validade < r.Produtos[j].Data_validade
+		return r.Produtos[i].DataValidade < r.Produtos[j].DataValidade
 	})
 
 	var recomendarIDs []int
