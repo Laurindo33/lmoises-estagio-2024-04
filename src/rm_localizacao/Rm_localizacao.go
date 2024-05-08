@@ -1,4 +1,4 @@
-package Rm_localizacao
+package rm_localizacao
 
 type RastreamentoLocalizacao struct {
 	Produtolocalizacao map[int]string

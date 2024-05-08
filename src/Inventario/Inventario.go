@@ -25,6 +25,18 @@ type Inventario struct {
 	Lotes    map[int]Lote
 }
 
+type DadosLote struct {
+	lotID                  int
+	produtoID              int
+	dataFabricacao         string
+	dataValidade           string
+	quantidade             int
+	localizacaoArmazem     string
+	condicoesarmazenamento string
+	status                 string
+	Informaçõesfornecedor  string
+}
+
 func NovoInventario() *Inventario {
 	return &Inventario{
 		Produtos: make(map[int]Produto),
@@ -43,20 +55,20 @@ func (i *Inventario) AddProduto(id int, nome, descricao, categoria string) {
 
 }
 
-func (inv *Inventario) AddLot(lotID int, produtoID int, dataFabricacao string, dataValidade string, quantidade int, localizacaoArmazem string, condicoesarmazenamento string, status string, Informaçõesfornecedor string) {
-	_, exists := inv.Produtos[produtoID]
+func (inv *Inventario) AddLot(config DadosLote, anexos ...string) {
+	_, exists := inv.Produtos[config.produtoID]
 	if !exists {
 		panic("Produto não existe")
 	}
 
-	inv.Lotes[lotID] = Lote{
-		ID:                     lotID,
-		DataFabricacao:         dataFabricacao,
-		DataValidade:           dataValidade,
-		Quantidade:             quantidade,
-		LocalizacaoArmazem:     localizacaoArmazem,
-		CondicoesArmazenamento: condicoesarmazenamento,
-		Status:                 status,
+	inv.Lotes[config.lotID] = Lote{
+		ID:                     config.lotID,
+		DataFabricacao:         config.dataFabricacao,
+		DataValidade:           config.dataValidade,
+		Quantidade:             config.quantidade,
+		LocalizacaoArmazem:     config.localizacaoArmazem,
+		CondicoesArmazenamento: config.condicoesarmazenamento,
+		Status:                 config.status,
 		HistoricoMovimento:     []string{},
 		InformaçõesFornecedor:  "",
 		ObservacaoNota:         "",

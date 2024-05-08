@@ -5,14 +5,14 @@ import (
 
 	"Acme_lda/Inventario"
 	recomendacao "Acme_lda/Recomendacao"
-	Rm_localizacao "Acme_lda/rm_localizacao"
+	RmLocalizacao "Acme_lda/rm_localizacao"
 	"encoding/csv"
 	"os"
 	"strconv"
 )
 
 // geral
-func criarprodutosCsv(dados_produto [][]string, nomeArquivo string) {
+func criarCsv(dados [][]string, nomeArquivo string) {
 	// Abrir o arquivo CSV existente (ou criar um novo se não existir)
 	file, err := os.OpenFile(nomeArquivo+".csv", os.O_RDWR|os.O_CREATE, os.ModePerm)
 	if err != nil {
@@ -27,10 +27,10 @@ func criarprodutosCsv(dados_produto [][]string, nomeArquivo string) {
 	}
 
 	// Combinar os dados existentes com os novos dados
-	allData := append(existingData, dados_produto...)
+	allData := append(existingData, dados...)
 
 	// Posicionar o cursor no início do arquivo para reescrever todos os dados
-	file.Seek(0, 0)gi
+	file.Seek(0, 0)
 
 	// Criar um escritor CSV para o arquivo
 	writer := csv.NewWriter(file)
@@ -39,54 +39,6 @@ func criarprodutosCsv(dados_produto [][]string, nomeArquivo string) {
 	// Escrever todos os dados (existentes + novos) de volta para o arquivo
 	for _, row := range allData {
 		if err := writer.Write(row); err != nil {
-			panic(err)
-		}
-	}
-}
-
-func criarlocalizacaoCsv(dados_localizacao [][]string, nomelocalizacao string) {
-	file, err := os.Create(nomelocalizacao + ".csv")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	writer := csv.NewWriter(file)
-	defer writer.Flush()
-	for _, row := range dados_localizacao {
-		err := writer.Write(row)
-		if err != nil {
-			panic(err)
-		}
-	}
-}
-
-func criarloteCsv(dados_lot [][]string, nomelot string) {
-	file, err := os.Create(nomelot + ".csv")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	writer := csv.NewWriter(file)
-	defer writer.Flush()
-	for _, row := range dados_lot {
-		err := writer.Write(row)
-		if err != nil {
-			panic(err)
-		}
-	}
-}
-
-func criarrecomendacaoCsv(dados_recomendacao [][]string, nomerecomendacao string) {
-	file, err := os.Create(nomerecomendacao + ".csv")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	writer := csv.NewWriter(file)
-	defer writer.Flush()
-	for _, row := range dados_recomendacao {
-		err := writer.Write(row)
-		if err != nil {
 			panic(err)
 		}
 	}
@@ -113,31 +65,31 @@ func Inventariosave() {
 
 	inventario.AddProduto(1, "Produto A", "Discrição", "Categoria A")
 
-	inventario.AddLot(1, 1, "", "", 100, "", "", "", "")
+	//inventario.AddLot(1, 1, "", "", 100, "", "", "", "")
 
-	dados_produto := [][]string{
+	DadosProduto := [][]string{
 		{"Id_Produto: " + strconv.Itoa(id_produto) + " || Produto B : " + nome_produto + " || Discrição : " + nome_discrcao + " || Categoria: " + nome_categoria},
 	}
-	criarprodutosCsv(dados_produto, "Produto")
+	criarCsv(DadosProduto, "Produto")
 
-	dados_lot := [][]string{
+	DadosLot := [][]string{
 		{"Id_lote: " + strconv.Itoa(id_lote) + " || Id_Produto: " + strconv.Itoa(id_produto) + " || Data de fabrico : " + data_fabrico + " || Data de Validade: " + data_validade + " || quantidade:" + strconv.Itoa(quantidade) + " || Localização do Armazem : " + localizacao_armazem + " || Condições do Armazem: " + condicoes_armazenamento + " || status: " + status + " || Imformações do fornecedor : " + Informaçõesfornecedor},
 	}
-	criarloteCsv(dados_lot, "Lote")
+	criarCsv(DadosLot, "Lote")
 }
 
-func Rm_localizacaosave() {
+func RmLocalizacaosave() {
 	Id_localizacao := 1
 	localizacao := "Armazém A"
 
-	Rl := Rm_localizacao.NovoRastreamentoLocalizacao()
+	Rl := RmLocalizacao.NovoRastreamentoLocalizacao()
 	Rl.TasProdutolocalizacao(1, "Armazém A")
 	Rl.TasProdutolocalizacao(2, "Armazém B")
 
-	dados_localizacao := [][]string{
+	DadosLocalizacao := [][]string{
 		{"Id_localização: " + strconv.Itoa(Id_localizacao) + " || Localização : " + localizacao},
 	}
-	criarlocalizacaoCsv(dados_localizacao, "Localização")
+	criarCsv(DadosLocalizacao, "Localização")
 }
 
 func recomendacaosave() {
@@ -148,10 +100,10 @@ func recomendacaosave() {
 	rec.AddProdutos(2, "2024-05-10", 50)
 	rec.AddProdutos(4, "2024-05-20", 200)
 
-	dados_recomendacao := [][]string{
+	DadosRecomendacao := [][]string{
 		{"Id_recomendação : " + strconv.Itoa(2) + " || data de validade : " + "2024-05-19" + " || Quantidade : " + strconv.Itoa(100)},
 	}
-	criarrecomendacaoCsv(dados_recomendacao, "Recomendação")
+	criarCsv(DadosRecomendacao, "Recomendação")
 
 	recomendedado := rec.Recomendar()
 	fmt.Println("Recomendado produtos IDs para envio:", recomendedado)
@@ -159,6 +111,6 @@ func recomendacaosave() {
 
 func main() {
 	Inventariosave()
-	Rm_localizacaosave()
+	RmLocalizacaosave()
 	recomendacaosave()
 }

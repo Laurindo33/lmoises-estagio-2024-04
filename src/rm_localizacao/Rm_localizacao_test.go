@@ -1,10 +1,10 @@
-package Rm_localizacao
+package rm_localizacao
 
 import (
 	"testing"
 )
 
-func TestNewRastreamento_localizacao(t *testing.T) {
+func TestNewRastreamentoLocalizacao(t *testing.T) {
 	lt := NovoRastreamentoLocalizacao()
 	lt.TasProdutolocalizacao(1, "Armazém A")
 

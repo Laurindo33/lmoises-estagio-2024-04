@@ -30,7 +30,18 @@ func TestAddProduct(t *testing.T) {
 func TestAddLot(t *testing.T) {
 	inventario := NovoInventario()
 	inventario.AddProduto(1, "Produto A", "Descrição A", "Categoria A")
-	inventario.AddLot(1, 1, "2024-04-30", "2024-05-30", 100, "Armazém A", "condições A", "Disponivel", "Recomendado usar em lugares frescos")
+	config := DadosLote {
+		lotID                  : 1,
+		produtoID              : 1,
+		dataFabricacao         : "2024-10-01",
+		dataValidade           : "2024-12-02",
+		quantidade             : 100,
+		localizacaoArmazem     : "Local",
+		condicoesarmazenamento : "Fresco",
+		status                 :"diponivel",
+		Informaçõesfornecedor  : "",
+	}
+	inventario.AddLot(config)
 
 	if len(inventario.Lotes) != 1 {
 		t.Errorf("Esperado 1 lot, Tem %d", len(inventario.Lotes))
