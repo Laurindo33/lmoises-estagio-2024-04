@@ -5,10 +5,10 @@ import (
 )
 
 func TestRecomendacao(t *testing.T) {
-	rec := NewRecomendacao()
-	rec.Addprodutos(1, "2024-05-15", 100)
-	rec.Addprodutos(2, "2024-05-10", 50)
-	rec.Addprodutos(3, "2024-05-20", 200)
+	rec := NovaRecomendacao()
+	rec.AddProdutos(1, "2024-05-15", 100)
+	rec.AddProdutos(2, "2024-05-10", 50)
+	rec.AddProdutos(3, "2024-05-20", 200)
 
 	recomendado := rec.Recomendar()
 

@@ -5,7 +5,7 @@ import (
 )
 
 func TestNewRastreamento_localizacao(t *testing.T) {
-	lt := NewRastreamento_localizacao()
+	lt := NovoRastreamentoLocalizacao()
 	lt.TasProdutolocalizacao(1, "Armazém A")
 
 	if len(lt.Produtolocalizacao) != 1 {

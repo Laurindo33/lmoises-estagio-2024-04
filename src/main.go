@@ -5,7 +5,7 @@ import (
 
 	"Acme_lda/Inventario"
 	recomendacao "Acme_lda/Recomendacao"
-	"Acme_lda/Rm_localizacao"
+	Rm_localizacao "Acme_lda/rm_localizacao"
 	"encoding/csv"
 	"os"
 	"strconv"
@@ -30,7 +30,7 @@ func criarprodutosCsv(dados_produto [][]string, nomeArquivo string) {
 	allData := append(existingData, dados_produto...)
 
 	// Posicionar o cursor no início do arquivo para reescrever todos os dados
-	file.Seek(0, 0)
+	file.Seek(0, 0)gi
 
 	// Criar um escritor CSV para o arquivo
 	writer := csv.NewWriter(file)
@@ -108,13 +108,12 @@ func Inventariosave() {
 	condicoes_armazenamento := ""
 	status := ""
 	Informaçõesfornecedor := ""
- 
+
 	inventario := Inventario.NovoInventario()
 
 	inventario.AddProduto(1, "Produto A", "Discrição", "Categoria A")
 
 	inventario.AddLot(1, 1, "", "", 100, "", "", "", "")
-
 
 	dados_produto := [][]string{
 		{"Id_Produto: " + strconv.Itoa(id_produto) + " || Produto B : " + nome_produto + " || Discrição : " + nome_discrcao + " || Categoria: " + nome_categoria},
@@ -131,7 +130,7 @@ func Rm_localizacaosave() {
 	Id_localizacao := 1
 	localizacao := "Armazém A"
 
-	Rl := Rm_localizacao.NewRastreamento_localizacao()
+	Rl := Rm_localizacao.NovoRastreamentoLocalizacao()
 	Rl.TasProdutolocalizacao(1, "Armazém A")
 	Rl.TasProdutolocalizacao(2, "Armazém B")
 
@@ -143,11 +142,11 @@ func Rm_localizacaosave() {
 
 func recomendacaosave() {
 
-	rec := recomendacao.NewRecomendacao()
+	rec := recomendacao.NovaRecomendacao()
 
-	rec.Addprodutos(1, "2024-05-09", 100)
-	rec.Addprodutos(2, "2024-05-10", 50)
-	rec.Addprodutos(4, "2024-05-20", 200)
+	rec.AddProdutos(1, "2024-05-09", 100)
+	rec.AddProdutos(2, "2024-05-10", 50)
+	rec.AddProdutos(4, "2024-05-20", 200)
 
 	dados_recomendacao := [][]string{
 		{"Id_recomendação : " + strconv.Itoa(2) + " || data de validade : " + "2024-05-19" + " || Quantidade : " + strconv.Itoa(100)},

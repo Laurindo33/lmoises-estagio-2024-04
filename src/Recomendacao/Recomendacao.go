@@ -5,24 +5,24 @@ import (
 )
 
 type Produto struct {
-	ID            int
+	ID           int
 	DataValidade string
-	Quantidade    int
+	Quantidade   int
 }
 
 type Recomendacao struct {
 	Produtos []Produto
 }
 
-func NewRecomendacao() *Recomendacao {
+func NovaRecomendacao() *Recomendacao {
 	return &Recomendacao{}
 }
 
-func (r *Recomendacao) Addprodutos(produtoID int, datavalidade string, quantidade int) {
+func (r *Recomendacao) AddProdutos(produtoID int, datavalidade string, quantidade int) {
 	r.Produtos = append(r.Produtos, Produto{
-		ID:            produtoID,
+		ID:           produtoID,
 		DataValidade: datavalidade,
-		Quantidade:    quantidade,
+		Quantidade:   quantidade,
 	})
 }
 
@@ -32,8 +32,8 @@ func (r *Recomendacao) Recomendar() []int {
 	})
 
 	var recomendarIDs []int
-	for _, product := range r.Produtos {
-		recomendarIDs = append(recomendarIDs, product.ID)
+	for _, produto := range r.Produtos {
+		recomendarIDs = append(recomendarIDs, produto.ID)
 	}
 
 	return recomendarIDs
