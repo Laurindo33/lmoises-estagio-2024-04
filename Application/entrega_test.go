@@ -7,7 +7,7 @@ import (
 
 func TestEntregarPedido(t *testing.T) {
 
-	t.Run("Teste  pedido Formalizao", func(t *testing.T) {
+	t.Run("Teste Validar Pedido de Encomenda", func(t *testing.T) {
 
 		//Arrange
 		esperado := true
@@ -23,7 +23,7 @@ func TestEntregarPedido(t *testing.T) {
 		}
 	})
 
-	t.Run("Teste  Pagamento Formalizado", func(t *testing.T) {
+	t.Run("Teste  Validar Pagamento Pagamento da encomenda ", func(t *testing.T) {
 
 		//Arrange
 		esperado := true
@@ -39,7 +39,7 @@ func TestEntregarPedido(t *testing.T) {
 
 	})
 
-	t.Run("Teste morada válida", func(t *testing.T) {
+	t.Run("Teste Verificar Morada válida", func(t *testing.T) {
 		//Arrange
 		esperado := "Luanda"
 		pedido := PedidoEntrega{}
