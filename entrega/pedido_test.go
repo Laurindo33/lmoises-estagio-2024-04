@@ -4,18 +4,27 @@ import (
 	"testing"
 )
 
-func TestFormalizar(t *testing.T) {
+func TestFormalizarPedido(t *testing.T) {
+
+	//Assert
+
 	pedido := Pedido{
-		dimensoes: 20,
+		dimensoes: []int{1,2},
 		peso:      20,
 		Endereco:  "Luanda",
 		contatos:  "932838238",
 	}
 
-	service := NewPedidoServico()
-	esperado := "Pedido formalizados com sucesso"
-	resultado := service.FormalizeOrder(&pedido)
+	esperado := "Pedido formalizado com sucesso"
+
+	//Act
+	
+	service := NewPedidoService()
+	resultado := service.FormalizarPedido(&pedido)
+
+	//Assert
+
 	if resultado != esperado {
-		t.Errorf("FormalizPedido() retornou um resultado inesperado, pego: %s, esperado: %s", resultado, esperado)
+		t.Errorf(" pego: %s, esperado: %s", resultado, esperado)
 	}
 }

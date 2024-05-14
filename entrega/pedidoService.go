@@ -2,10 +2,10 @@ package entrega
 
 type PedidoService struct{}
 
-func NewPedidoServico() *PedidoService {
+func NewPedidoService() *PedidoService {
 	return &PedidoService{}
 }
 
-func (os *PedidoService) FormalizeOrder(order *Pedido) string {
+func (os *PedidoService) FormalizarPedido(order *Pedido) string {
 	return order.FormalizarPedido()
 }
