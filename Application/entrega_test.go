@@ -7,10 +7,10 @@ import (
 
 func TestEntregarPedido(t *testing.T) {
 
-	t.Run("Teste  pedido Formalizao?", func(t *testing.T) {
+	t.Run("Teste  pedido Formalizao", func(t *testing.T) {
 
 		//Arrange
-		esperado := false
+		esperado := true
 		pedido := PedidoEntrega{}
 		actual := pedido.FormalizarPedido(&model.Cliente{})
 
@@ -23,7 +23,7 @@ func TestEntregarPedido(t *testing.T) {
 		}
 	})
 
-	t.Run("Teste  Pagamento Formalizao?", func(t *testing.T) {
+	t.Run("Teste  Pagamento Formalizado", func(t *testing.T) {
 
 		//Arrange
 		esperado := true
@@ -37,5 +37,19 @@ func TestEntregarPedido(t *testing.T) {
 			t.Fail()
 		}
 
+	})
+
+	t.Run("Teste morada válida", func(t *testing.T) {
+		//Arrange
+		esperado := "Luanda"
+		pedido := PedidoEntrega{}
+		actual := pedido.VericarDestinatario(&model.Cliente{})
+		//Act
+
+		//Assert
+		if esperado != actual {
+			t.Errorf("%s != %s", esperado, actual)
+			t.Fail()
+		}
 	})
 }
