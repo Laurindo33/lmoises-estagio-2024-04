@@ -1,4 +1,4 @@
-package entrega
+package application
 
 type Pedido struct {
 	dimensoes []int

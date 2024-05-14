@@ -1,4 +1,4 @@
-package entrega
+package application
 
 type PedidoService struct{}
 
