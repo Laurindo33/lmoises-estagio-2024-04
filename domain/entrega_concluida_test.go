@@ -11,14 +11,13 @@ func TestRegistrarEntregaConcluida(t *testing.T) {
 		// Dados da entrega concluída
 		encomendaID := "123"
 		destinatario := "João"
-		dataConclusao := "2024-05-17 10:00:00"
 
 		// Registrar entrega concluída
 		entrega.RegistrarEntregaConcluida(encomendaID, destinatario)
 
 		// Verificar se os dados foram corretamente atribuídos
-		if entrega.encomendaID != encomendaID || entrega.destinatario != destinatario  {
-			t.Errorf("Os dados da entrega concluída não foram corretamente atribuídos: esperado %s, %s, %s, recebido %s, %s, %s", encomendaID, destinatario, dataConclusao, entrega.encomendaID, entrega.destinatario)
+		if entrega.encomendaID != encomendaID || entrega.destinatario != destinatario {
+			t.Errorf("Os dados da entrega concluída não foram corretamente atribuídos: esperado %s, %s, recebido %s, %s", encomendaID, destinatario, entrega.encomendaID, entrega.destinatario)
 		}
 	})
 }
