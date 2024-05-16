@@ -1,19 +1,14 @@
 package application
 
-import (
-	"fmt"
-)
+import "strconv"
 
 // CalculoRota representa a lógica para calcular a rota mais eficiente
 type CalculoRota struct{}
 
 // CalcularRota calcula a rota mais eficiente para a entrega
-func (c *CalculoRota) CalcularRota(encomendas []Encomenda) {
+func CalcularRota(viatura string, numeroEncomenda int) string {
 
-	for _, encomenda := range encomendas {
-		fmt.Printf("Calculando rota para a encomenda ID: %s\n", encomenda.EncomendaID)
-		// Lógica real para calcular a rota iria aqui
-	}
+	rota := viatura + " : " + strconv.Itoa(numeroEncomenda)
 
-	fmt.Println("Rota calculada com sucesso para todas as encomendas!")
+	return rota
 }
