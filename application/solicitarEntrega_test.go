@@ -8,30 +8,25 @@ import (
 func TestClienteSolicitarEntrega(t *testing.T) {
 	t.Run("Cliente solicita uma entrega", func(t *testing.T) {
 		// Dado
-		/*cliente := domain.Cliente{
-			Nome:     "João",
-			Endereco: "Rua A, 123",
-			Contacto: "joao@example.com",
-		}*/
+		
 		encomenda := domain.Encomenda{
-			EncomendaID: "10",
+			EncomendaID:"10",
 			Largura:     20,
 			Altura:      23,
 			Peso:        12,
+			MoradaDestinatario: "Bengo",
 		}
 
-		//ClientEsperado := NovoCliente(&cliente)
-		//EncomendaEsperada := NovaEncomenda(&encomenda)
+		Esperado :=SolicitarEntrega(encomenda)
+		Actual:="Benguela"
 
-		pedidoID, err := SolicitarEntrega(&encomenda)
 
-		if err != nil {
-			t.Errorf("Erro ao solicitar entrega: %v", err)
+
+		if Esperado != Actual {
+			t.Errorf("Erro ao solicitar entrega: %v Diferente de %v",Esperado, Actual )
 		}
 
-		if pedidoID == "2" {
-			t.Error("Identificador de pedido vazio")
-		}
+		
 	})
 
 }
